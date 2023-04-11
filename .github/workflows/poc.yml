@@ -1,0 +1,21 @@
+name: demo
+
+on:
+  workflow_dispatch:
+    inputs:
+      input1:
+        required: false
+        type: choice
+        options:
+          - aa
+          - bb
+
+jobs:
+  demo:
+    steps:
+      - name: Check input context with brackets
+        if: ${{ inputs.input1 != '' }}
+        run: echo "run with brackets"
+      - name: Check input context without brackets
+        if: inputs.input1 != ''
+        run: echo "run without brackets"
