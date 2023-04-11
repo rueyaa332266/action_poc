@@ -5,7 +5,7 @@ on:
     inputs:
       input1:
         required: false
-        description: 'AA:\nthis is long description long description long description long description'
+        description: 'aa: this is do not long description long description long description long description'
         type: choice
         options:
           - ''
