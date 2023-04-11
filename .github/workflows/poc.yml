@@ -1,4 +1,4 @@
-name: demo
+name: demo-new
 
 on:
   workflow_dispatch:
