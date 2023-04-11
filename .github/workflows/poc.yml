@@ -10,6 +10,9 @@ on:
           - ''
           - aa
           - bb
+      input2:
+        required: true
+        type: string
 
 jobs:
   demo:
