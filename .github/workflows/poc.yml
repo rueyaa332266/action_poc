@@ -12,6 +12,7 @@ on:
 
 jobs:
   demo:
+    runs-on: ubuntu-latest
     steps:
       - name: Check input context with brackets
         if: ${{ inputs.input1 != '' }}
