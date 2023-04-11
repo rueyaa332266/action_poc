@@ -5,6 +5,7 @@ on:
     inputs:
       input1:
         required: false
+        description: 'AA: this is aa'
         type: choice
         options:
           - ''
