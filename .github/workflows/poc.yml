@@ -13,5 +13,5 @@ jobs:
     steps:
       - name: Check input
         env:
-          check: ${{ inputs.input1 || 'something' }}
+          check: ${{ inputs.input1 || something }}
         run: echo ${{ env.check }}
