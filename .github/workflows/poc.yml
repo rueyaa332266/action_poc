@@ -5,20 +5,13 @@ on:
     inputs:
       input1:
         required: false
-        description: 'aa: this is do not long description long description long description long description'
-        type: choice
-        options:
-          - ''
-          - aa
-          - bb
+        type: string
 
 jobs:
   demo:
     runs-on: ubuntu-latest
     steps:
-      - name: Check input context with brackets
-        if: ${{ inputs.input1 != '' }}
-        run: echo "run with brackets"
-      - name: Check input context without brackets
-        if: inputs.input1 != ''
-        run: echo "run without brackets"
+      - name: Check input
+        env:
+          check: ${{ inputs.input1 || 'something' }}
+        run: echo ${{ env.check }}
