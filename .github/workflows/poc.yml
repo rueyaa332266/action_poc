@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check input
+        if: inputs.input1
         env:
-          check: ${{ inputs.input1 || something }}
+          check: ${{ inputs.input1 }}
         run: echo ${{ env.check }}
