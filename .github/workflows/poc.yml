@@ -4,8 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       input1:
-        required: false
-        type: string
+        default: "test"
 
 jobs:
   demo:
