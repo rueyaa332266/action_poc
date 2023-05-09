@@ -4,14 +4,12 @@ on:
   workflow_dispatch:
     inputs:
       input1:
-        default: "test"
+        required: false
+        type: boolean
 
 jobs:
   demo:
     runs-on: ubuntu-latest
-    env:
-      NBF: ${{ false }}
     steps:
       - name: Check input
-        if: env.NBF
-        run: echo ${{ env.NBF }}
+        run: echo 123
