@@ -11,7 +11,7 @@ jobs:
   demo:
     runs-on: ubuntu-latest
     env:
-      INPUT: ${{ inputs.input1 }}
+      INPUT: ${{ inputs.input1 || '' }}
     steps:
       - name: Check input
         run: echo ${{ env.INPUT }}
