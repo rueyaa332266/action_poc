@@ -16,4 +16,4 @@ jobs:
       - name: Check input
         run: echo ${{ env.INPUT }}
       - name: Check if
-        run: echo $INPUT
+        run: ruby .github/workflows/check.rb
