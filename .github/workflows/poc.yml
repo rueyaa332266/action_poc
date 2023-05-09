@@ -10,6 +10,11 @@ on:
 jobs:
   demo:
     runs-on: ubuntu-latest
+    env:
+      INPUT: ${{ inputs.input1 }}
     steps:
       - name: Check input
-        run: echo 123
+        run: echo ${{ env.INPUT }}
+      - name: Check if
+        if: env.INPUT == false
+        run: echo yes
