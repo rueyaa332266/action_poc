@@ -13,6 +13,7 @@ jobs:
     env:
       INPUT: ${{ inputs.input1 || '' }}
     steps:
+      - uses: actions/checkout@v3
       - name: Check input
         run: echo ${{ env.INPUT }}
       - name: Check if
