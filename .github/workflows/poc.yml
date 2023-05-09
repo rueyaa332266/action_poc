@@ -13,5 +13,5 @@ jobs:
       NBF: ${{ true }}
     steps:
       - name: Check input
-        if: env.NBF == true
+        if: env.NBF == 'true'
         run: echo ${{ env.NBF }}
