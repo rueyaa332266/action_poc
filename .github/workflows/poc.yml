@@ -10,7 +10,7 @@ jobs:
   demo:
     runs-on: ubuntu-latest
     env:
-      NBF: ${{ false }}
+      NBF: ${{ true }}
     steps:
       - name: Check input
         if: env.NBF == true
