@@ -1,0 +1,8 @@
+name: demo-new
+
+on:
+  workflow_dispatch:
+
+jobs:
+  demo:
+    uses: ./.github/workflows/poc.yml
