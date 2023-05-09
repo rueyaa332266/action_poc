@@ -16,5 +16,5 @@ jobs:
       - name: Check input
         run: echo ${{ env.INPUT }}
       - name: Check if
-        if: env.INPUT == false
+        if: env.INPUT == 'false'
         run: echo yes
