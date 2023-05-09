@@ -10,8 +10,8 @@ jobs:
   demo:
     runs-on: ubuntu-latest
     env:
-      NBF: ${{ true }}
+      NBF: ${{ false }}
     steps:
       - name: Check input
-        if: env.NBF == 'true'
+        if: env.NBF
         run: echo ${{ env.NBF }}
