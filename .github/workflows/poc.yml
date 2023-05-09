@@ -9,9 +9,9 @@ on:
 jobs:
   demo:
     runs-on: ubuntu-latest
+    env:
+      NBF: ${{ ture }}
     steps:
       - name: Check input
-        if: inputs.input1
-        env:
-          check: ${{ inputs.input1 }}
-        run: echo ${{ env.check }}
+        if: env.NBF == true
+        run: echo ${{ env.NBF }}
