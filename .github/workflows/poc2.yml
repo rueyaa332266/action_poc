@@ -6,5 +6,3 @@ on:
 jobs:
   demo:
     uses: ./.github/workflows/poc.yml
-    with:
-      input1: true
