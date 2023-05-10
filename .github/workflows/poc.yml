@@ -1,6 +1,7 @@
 name: demo-new
 
 on:
+  workflow_dispatch:
   workflow_call:
     inputs:
       input1:
