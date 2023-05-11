@@ -14,7 +14,9 @@ jobs:
     env:
       INPUT: ${{ inputs.input1 }}
     steps:
-      - name: Upload playwright report
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: check composite
         uses: ./.github/actions/poc_if
         with:
-          input2: 456
+          input2: "456"
