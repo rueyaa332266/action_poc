@@ -10,9 +10,12 @@ runs:
   steps:
     - name: echo
       run: echo ${{ inputs.input2 }}
+      shell: bash
     - name: Check 123
       if: inputs.input2 == "123"
       run: echo ${{ inputs.input2 }}
+      shell: bash
     - name: Check 456
       if: inputs.input2 == "456"
       run: echo ${{ inputs.input2 }}
+      shell: bash
