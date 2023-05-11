@@ -23,7 +23,9 @@ jobs:
         with:
           repository: 'rueyaa332266/action_poc'
           ref: 'master'
-      - name: check composite
+      - name: check repo
         run: echo ${{ github.repository }}
+      - name: check secret
+        run: echo ${{ secrets.CHECK }}
       - name: check files
         run: ls .github/workflows
