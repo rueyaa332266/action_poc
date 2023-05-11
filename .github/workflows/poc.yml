@@ -17,6 +17,4 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: check composite
-        uses: ./.github/actions/poc_if
-        with:
-          input2: "456"
+        run: echo ${{ github.repository }}
