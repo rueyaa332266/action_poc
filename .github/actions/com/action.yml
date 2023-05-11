@@ -8,12 +8,12 @@ runs:
     - name: check repo
       run: echo ${{ github.repository }}
       shell: bash
-    - name: check secret
-      run: echo ${{ secrets.CHECK }}
-      shell: bash
-    - name: check vars
-      run: echo ${{ vars.CHECK }}
-      shell: bash
+    # - name: check secret
+    #   run: echo ${{ secrets.CHECK }}
+    #   shell: bash
+    # - name: check vars
+    #   run: echo ${{ vars.CHECK }}
+    #   shell: bash
     - name: check files
       run: ls .github/workflows
       shell: bash
