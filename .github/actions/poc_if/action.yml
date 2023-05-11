@@ -1,0 +1,16 @@
+name: Check if run
+
+inputs:
+  input2:
+
+runs:
+  using: 'composite'
+  steps:
+    - name: echo
+      run: echo ${{ inputs.input2 }}
+    - name: Check 123
+      if: inputs.input2 == "123"
+      run: echo ${{ inputs.input2 }}
+    - name: Check 456
+      if: inputs.input2 == "456"
+      run: echo ${{ inputs.input2 }}
