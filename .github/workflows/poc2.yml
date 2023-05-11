@@ -5,4 +5,6 @@ on:
 
 jobs:
   demo:
-    uses: ./.github/actions/com/action.yml@master
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/com/action.yml
