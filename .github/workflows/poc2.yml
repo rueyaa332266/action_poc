@@ -7,4 +7,4 @@ jobs:
   demo:
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/actions/com/action.yml
+      - uses: ./.github/actions/com/action.yml@master
