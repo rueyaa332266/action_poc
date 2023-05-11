@@ -5,4 +5,4 @@ on:
 
 jobs:
   demo:
-    uses: ./.github/actions/com/action.yml
+    uses: ./.github/actions/com/action.yml@master
