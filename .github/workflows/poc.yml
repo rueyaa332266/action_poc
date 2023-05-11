@@ -25,3 +25,5 @@ jobs:
           ref: 'master'
       - name: check composite
         run: echo ${{ github.repository }}
+      - name: check files
+        run: ls .github/workflows
