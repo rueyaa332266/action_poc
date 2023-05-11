@@ -2,6 +2,8 @@ name: Check if run
 
 inputs:
   input2:
+    required: true
+    description: check
 
 runs:
   using: 'composite'
