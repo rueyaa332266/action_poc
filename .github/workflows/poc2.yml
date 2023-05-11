@@ -5,4 +5,4 @@ on:
 
 jobs:
   demo:
-    uses: ./.github/workflows/poc.yml
+    uses: ./.github/actions/com/action.yml
