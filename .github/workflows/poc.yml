@@ -7,6 +7,9 @@ on:
       input1:
         required: false
         type: boolean
+    secrets:
+      CHECK:
+        required: true
 
 jobs:
   demo:
@@ -27,5 +30,7 @@ jobs:
         run: echo ${{ github.repository }}
       - name: check secret
         run: echo ${{ secrets.CHECK }}
+      - name: check vars
+        run: echo ${{ vars.CHECK }}
       - name: check files
         run: ls .github/workflows
