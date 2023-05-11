@@ -7,8 +7,6 @@ on:
       input1:
         required: false
         type: boolean
-    secrets:
-      CHECK:
 
 jobs:
   demo:
