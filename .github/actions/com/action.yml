@@ -3,15 +3,7 @@ name: demo-com
 runs:
     using: 'composite'
     steps:
-    - name: Checkout when called in e2e repo
-      if: github.repository == 'rueyaa332266/action_poc'
-      uses: actions/checkout@v3
-    - name: Checkout when called from other repo
-      if: github.repository != 'rueyaa332266/action_poc'
-      uses: actions/checkout@v3
-      with:
-        repository: 'rueyaa332266/action_poc'
-        ref: 'master'
+    - uses: actions/checkout@v3
     - name: check repo
       run: echo ${{ github.repository }}
       shell: bash
