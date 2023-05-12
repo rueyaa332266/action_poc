@@ -24,6 +24,7 @@ jobs:
           repository: 'rueyaa332266/action_poc'
           ref: 'master'
       - name: check repo
+        if: !cancelled()
         run: echo ${{ github.repository }}
       - name: check secret
         run: echo ${{ secrets.CHECK }}
