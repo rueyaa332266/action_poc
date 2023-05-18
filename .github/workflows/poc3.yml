@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v6
+        id: get-reviews
         with:
           script: |
             const reviews = await github.rest.pulls.listReviews({
@@ -16,5 +17,6 @@ jobs:
               repo: context.repo.repo,
               pull_number: context.issue.number,
             });
-
-            console.log(reviews)
+            return reviews
+      - name: Get result
+        run: echo "${{ steps.get-reviews.outputs.result }}"
