@@ -6,9 +6,17 @@ on:
 
 jobs:
   approved:
-    if: github.event.review.state == 'approved'
     runs-on: ubuntu-latest
     steps:
-      - name: get approved count
-        run: echo '${{ toJson(github.event.pull_request.reviews) }}' | jq '. | map(select(.state=="APPROVED")) | length'  
-      - run: echo "This PR was approved"
+      - uses: actions/github-script@v6
+        id: get-reviews
+        with:
+          script: |
+            const reviews = await github.rest.pulls.listReviews({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            });
+            return reviews;
+      - name: Get result
+        run: echo "${{ steps.get-reviews.outputs.result.data }}"
