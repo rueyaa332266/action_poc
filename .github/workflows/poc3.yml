@@ -31,6 +31,6 @@ jobs:
             arr = reviews.data.filter(function (el) {
               return el.state === 'COMMENTED'
             });
-            console.log(arr.length);
+            return arr.length
       - name: Get result
         run: echo "${{ steps.get-reviews-2.outputs.result }}"
