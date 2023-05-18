@@ -11,6 +11,7 @@ jobs:
       - uses: actions/github-script@v6
         id: get-reviews
         with:
+          result-encoding: string
           script: |
             const reviews = await github.rest.pulls.listReviews({
               owner: context.repo.owner,
