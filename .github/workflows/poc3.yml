@@ -18,7 +18,7 @@ jobs:
               repo: context.repo.repo,
               pull_number: context.issue.number,
             });
-            arr = reviews.filter(function (el) {
+            arr = reviews.data.filter(function (el) {
               return el.state === 'COMMENTED'
             });
             console.log(arr);
