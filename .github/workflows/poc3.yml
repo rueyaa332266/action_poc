@@ -9,5 +9,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: get approved count
-        run: echo '${{ toJson(github.event.pull_request.reviews) }}' | jq '. | map(select(.state=="APPROVED")) | length'  
+        run: echo ${{ toJson(github.event.pull_request) }}
       - run: echo "This PR was approved"
