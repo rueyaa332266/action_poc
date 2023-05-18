@@ -17,10 +17,20 @@ jobs:
               repo: context.repo.repo,
               pull_number: context.issue.number,
             });
+            return reviews.data;
+      - name: Get result
+        run: echo "${{ toJson(steps.get-reviews.outputs.result) }}"
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            const reviews = await github.rest.pulls.listReviews({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            });
             arr = reviews.data.filter(function (el) {
               return el.state === 'COMMENTED'
             });
-            console.log(arr);
-            return reviews.data;
+            console.log(arr.length);
       - name: Get result
-        run: echo "${{ steps.get-reviews.outputs.result }}"
+        run: echo "${{ steps.get-reviews-2.outputs.result }}"
