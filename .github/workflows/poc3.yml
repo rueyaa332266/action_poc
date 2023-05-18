@@ -11,6 +11,7 @@ jobs:
       - uses: actions/github-script@v6
         id: get-reviews
         with:
+          result-encoding: string
           script: |
             const reviews = await github.rest.pulls.listReviews({
               owner: context.repo.owner,
@@ -19,4 +20,4 @@ jobs:
             });
             return reviews
       - name: Get result
-        run: echo "${{ steps.get-reviews.outputs.result.data }}"
+        run: echo "${{ steps.get-reviews.outputs.result }}"
