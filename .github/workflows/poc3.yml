@@ -17,5 +17,6 @@ jobs:
               repo: context.repo.repo,
               pull_number: context.issue.number,
             });
+            console.log(reviews);
       - name: Get result
         run: echo "${{ steps.get-reviews.outputs.result }}"
