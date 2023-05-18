@@ -18,4 +18,4 @@ jobs:
               pull_number: context.issue.number,
             });
       - name: Get result
-        run: echo "${{ steps.get-reviews.outputs.result.data }}"
+        run: echo "${{ steps.get-reviews.outputs.result }}"
