@@ -28,7 +28,7 @@ jobs:
               repo: context.repo.repo,
               issue_number: context.issue.number,
             })
-            # console.log(comments)
+            console.log(comments)
 
             console.log("--- changingBranchComment ---")
             const changingBranchComment = comments.data.reverse().find(comment => comment.body.startsWith("/set-e2e-branch"))
