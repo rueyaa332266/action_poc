@@ -3,12 +3,47 @@ name: pr-approved
 on:
   pull_request_review:
     types: [submitted]
+  issue_comment:
+    types: [created]
 
 jobs:
   approved:
-    if: github.event.review.state == 'approved'
+    if: ${{ github.event.comment.body == '/e2e' || contains(github.event.comment.body, '/set') || github.event.review.state != 'approved' }}
     runs-on: ubuntu-latest
+    env: 
+      E2E_BRANCH: main
     steps:
-      - name: get approved count
-        run: echo '${{ toJson(github.event.pull_request.reviews) }}' | jq '. | map(select(.state=="APPROVED")) | length'  
-      - run: echo "This PR was approved"
+      - run: echo ${{ github.event.issue.number }}
+      - run: echo ${{ github.event.pull_request.number }}
+      - run: echo ${{ github.event.issue.number || github.event.pull_request.number }}
+      - uses: actions/github-script@v6
+        id: get-reviews
+        with:
+          script: |
+            const reviews = await github.rest.pulls.listReviews({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            });
+            return reviews.data;
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            const comments = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            })
+            console.log(comments)
+
+            console.log("--- changingBranchComment ---")
+            const changingBranchComment = comments.data.reverse().find(comment => comment.body.startsWith("/set-e2e-branch"))
+            console.log(changingBranchComment)
+            
+            if(changingBranchComment) {
+              console.log("--- branch ---")
+              const branch = changingBranchComment.body.substring('/set-e2e-branch'.length + 1).trim()
+              console.log(branch)
+              core.exportVariable('E2E_BRANCH', branch);
+            }
+      - run: echo ${{ env.E2E_BRANCH }}
