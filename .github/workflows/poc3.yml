@@ -3,8 +3,6 @@ name: pr-approved
 on:
   pull_request_review:
     types: [submitted]
-  issue_comment:
-    types: [created]
 
 jobs:
   approved:
@@ -44,7 +42,9 @@ jobs:
             if(changingBranchComment) {
               console.log("--- branch ---")
               const branch = changingBranchComment.body.substring('/set-e2e'.length + 1).trim()
-              console.log(branch)
-              core.exportVariable('E2E_BRANCH', branch);
+              if(branch) {
+                console.log(branch)
+                core.exportVariable('E2E_BRANCH', branch);
+              }
             }
       - run: echo ${{ env.E2E_BRANCH }}
