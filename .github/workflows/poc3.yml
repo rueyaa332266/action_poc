@@ -11,6 +11,8 @@ jobs:
     env: 
       E2E_BRANCH: main
     steps:
+      - run: echo ${{ github.event.issue.number }}
+      - run: echo ${{ github.event.pull_request.number }}
       - uses: actions/github-script@v6
         id: get-reviews
         with:
