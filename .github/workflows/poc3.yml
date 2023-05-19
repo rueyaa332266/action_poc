@@ -6,6 +6,7 @@ on:
 
 jobs:
   approved:
+    if: ${{ github.event.comment.body == '/e2e' || github.event.review.state != 'approved' }}
     runs-on: ubuntu-latest
     env: 
       E2E_BRANCH: main
