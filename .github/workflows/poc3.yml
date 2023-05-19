@@ -23,14 +23,13 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            const reviews = await github.rest.pulls.listReviews({
+            const comments = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: context.issue.number,
-            });
-            arr = reviews.data.filter(function (el) {
-              return el.state === 'COMMENTED'
-            });
-            return arr.length
-      - name: Get result
-        run: echo "${{ steps.get-reviews-2.outputs.result }}"
+              issue_number: context.issue.number,
+            })
+            # console.log(comments)
+
+            console.log("--- changingBranchComment ---")
+            const changingBranchComment = comments.data.reverse().find(comment => comment.body.startsWith("/set-e2e-branch"))
+            console.log(changingBranchComment)
