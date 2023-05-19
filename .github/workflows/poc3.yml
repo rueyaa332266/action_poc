@@ -33,3 +33,10 @@ jobs:
             console.log("--- changingBranchComment ---")
             const changingBranchComment = comments.data.reverse().find(comment => comment.body.startsWith("/set-e2e-branch"))
             console.log(changingBranchComment)
+
+            if(changingBranchComment) {
+              console.log("--- branch ---")
+              const branch = changingBranchComment.body.substring('/set-e2e-branch'.length + 1).trim()
+              console.log(branch)
+              core.exportVariable('E2E_BRANCH', branch);
+            }
