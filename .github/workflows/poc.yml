@@ -16,8 +16,5 @@ jobs:
     steps:
       - name: Set REPOSITORY_NAME env var
         run: echo "REPOSITORY_NAME=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
-      - name: fail
-        continue-on-error: true
-        run: exit 1
       - name: echo
-        run: echo 123
+        run: echo ${{ github.event.ref }}
