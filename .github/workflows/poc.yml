@@ -1,8 +1,6 @@
 name: demo-new
 
 on: 
-  push:
-    branches: [master]
   workflow_dispatch:
   workflow_call:
     inputs:
@@ -18,5 +16,9 @@ jobs:
     steps:
       - name: Set REPOSITORY_NAME env var
         run: echo "REPOSITORY_NAME=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
+      - name: fail
+        continue-on-error: true
+        run: exit 1
       - name: echo
-        run: echo ${{ github.ref_name	}}
+        if: failure()
+        run: echo failed
