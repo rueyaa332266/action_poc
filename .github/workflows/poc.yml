@@ -17,5 +17,5 @@ jobs:
       - name: Set REPOSITORY_NAME env var
         run: echo "REPOSITORY_NAME=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
       - name: echo
-        if: !cancelled()
+        if: (!cancelled())
         run: echo $REPOSITORY_NAME ${{ env.REPOSITORY_NAME }}
