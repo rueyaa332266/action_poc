@@ -8,7 +8,7 @@ on:
 
 jobs:
   approved:
-    if: ${{ github.event.comment.body == '/e2e' || contains(github.event.comment.body, '/set') || github.event.review.state != 'approved' }}
+    if: ${{ github.event.comment.body == '/e2e' || contains(github.event.comment.body, '/set-e2e') || github.event.review.state == 'approved' }}
     runs-on: ubuntu-latest
     env: 
       E2E_BRANCH: main
@@ -37,12 +37,12 @@ jobs:
             console.log(comments)
 
             console.log("--- changingBranchComment ---")
-            const changingBranchComment = comments.data.reverse().find(comment => comment.body.startsWith("/set-e2e-branch"))
+            const changingBranchComment = comments.data.reverse().find(comment => comment.body.startsWith("/set-e2e"))
             console.log(changingBranchComment)
             
             if(changingBranchComment) {
               console.log("--- branch ---")
-              const branch = changingBranchComment.body.substring('/set-e2e-branch'.length + 1).trim()
+              const branch = changingBranchComment.body.substring('/set-e2e'.length + 1).trim()
               console.log(branch)
               core.exportVariable('E2E_BRANCH', branch);
             }
