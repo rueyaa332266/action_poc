@@ -8,7 +8,7 @@ on:
 
 jobs:
   approved:
-    if: ${{ github.event.comment.body == '/e2e' || contains(github.event.comment.body, '/set-e2e') || github.event.review.state == 'approved' }}
+    if: ${{ startsWith(github.event.comment.body, '/e2e') || github.event.review.state == 'approved' }}
     runs-on: ubuntu-latest
     env: 
       E2E_BRANCH: main
@@ -16,34 +16,21 @@ jobs:
       - run: echo ${{ github.event.issue.number }}
       - run: echo ${{ github.event.pull_request.number }}
       - run: echo ${{ github.event.issue.number || github.event.pull_request.number }}
-      - uses: actions/github-script@v6
-        id: get-reviews
-        with:
-          script: |
-            const reviews = await github.rest.pulls.listReviews({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.issue.number,
-            });
-            return reviews.data;
-      - uses: actions/github-script@v6
-        with:
-          script: |
-            const comments = await github.rest.issues.listComments({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-            })
-            console.log(comments)
 
-            console.log("--- changingBranchComment ---")
-            const changingBranchComment = comments.data.reverse().find(comment => comment.body.startsWith("/set-e2e"))
-            console.log(changingBranchComment)
-            
-            if(changingBranchComment) {
-              console.log("--- branch ---")
-              const branch = changingBranchComment.body.substring('/set-e2e'.length + 1).trim()
-              console.log(branch)
-              core.exportVariable('E2E_BRANCH', branch);
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            console.log("--- current comment ---")
+            const comment = await github.rest.issues.getComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.comment.id,
+            })
+            console.log(comment)
+
+            const test_name = changingBranchComment.body.split('--test=')[1]
+
+            if(test_name) {
+              console.log("--- set test_name ---")
+              console.log(test_name)
             }
-      - run: echo ${{ env.E2E_BRANCH }}
