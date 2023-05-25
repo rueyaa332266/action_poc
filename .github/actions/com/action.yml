@@ -4,15 +4,10 @@ runs:
     using: 'composite'
     steps:
     - uses: actions/checkout@v3
-    - name: check repo
-      run: echo ${{ github.repository }}
-      shell: bash
-    # - name: check secret
-    #   run: echo ${{ secrets.CHECK }}
-    #   shell: bash
-    # - name: check vars
-    #   run: echo ${{ vars.CHECK }}
-    #   shell: bash
+      if: github.repository != 'rueyaa332266/action_poc'
+      with:
+        repository: 'rueyaa332266/action_poc'
+        ref: 'master'
     - name: check files
       run: ls .github/workflows
       shell: bash
