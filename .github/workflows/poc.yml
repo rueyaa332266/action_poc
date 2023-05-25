@@ -29,4 +29,6 @@ jobs:
     steps:
       - run: echo ${{ needs.demo.outputs.ABC }}
       - run: echo ${{ needs.demo.outputs.TEST }}
-      - run: echo ${{ needs.demo.outputs.TEST || '' }}
+      - run: echo ${{ needs.demo.outputs.TEST || '??' }}
+      - if: needs.demo.outputs.TEST
+        run: echo skip
