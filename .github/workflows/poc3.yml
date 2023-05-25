@@ -27,9 +27,9 @@ jobs:
               repo: context.repo.repo,
               comment_id: ${{ github.event.comment.id }},
             })
-            console.log(comment)
+            console.log(comment.body)
 
-            const test_name = changingBranchComment.body.split('--test=')[1]
+            const test_name = comment.body.split('--test=')[1]
 
             if(test_name) {
               console.log("--- set test_name ---")
