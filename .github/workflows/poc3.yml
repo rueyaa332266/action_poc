@@ -23,7 +23,7 @@ jobs:
           script: |
             console
             console.log("--- current comment ---")
-            const comment = ${{ github.event.comment.body }}
+            const comment = "${{ github.event.comment.body }}"
             console.log(comment)
 
             const test_name = comment.split('--test=')[1]
@@ -32,3 +32,6 @@ jobs:
               console.log("--- set test_name ---")
               console.log(test_name)
             }
+
+            comment2 = "${{ github.event.comment.body }}".split('--test=')[1]
+            console.log(comment2)
