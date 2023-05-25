@@ -23,14 +23,10 @@ jobs:
           script: |
             console
             console.log("--- current comment ---")
-            const comment = await github.rest.issues.getComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              comment_id: ${{ github.event.comment.id }},
-            })
-            console.log(comment.data.body)
+            const comment = ${{ github.event.comment.body }}
+            console.log(comment)
 
-            const test_name = comment.data.body.split('--test=')[1]
+            const test_name = comment.split('--test=')[1]
 
             if(test_name) {
               console.log("--- set test_name ---")
