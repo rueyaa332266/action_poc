@@ -16,10 +16,15 @@ jobs:
       - run: echo ${{ github.event.issue.number }}
       - run: echo ${{ github.event.pull_request.number }}
       - run: echo ${{ github.event.issue.number || github.event.pull_request.number }}
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            console.log(context.comment)
 
       - uses: actions/github-script@v6
         with:
           script: |
+            console
             console.log("--- current comment ---")
             const comment = await github.rest.issues.getComment({
               owner: context.repo.owner,
