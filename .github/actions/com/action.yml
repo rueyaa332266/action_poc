@@ -11,3 +11,6 @@ runs:
     - name: check files
       run: ls .github/workflows
       shell: bash
+    - name: check env
+      run: echo $TEST
+      shell: bash
