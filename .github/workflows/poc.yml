@@ -32,3 +32,4 @@ jobs:
       - run: echo ${{ needs.demo.outputs.TEST || '??' }}
       - if: needs.demo.outputs.TEST
         run: echo skip
+      - run: echo ${{ github.ref_name }}
