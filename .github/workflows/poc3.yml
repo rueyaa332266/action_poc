@@ -5,8 +5,6 @@ on:
     types: [submitted]
   issue_comment:
     types: [created]
-  schedule:
-    - cron: '21 * * * *'
 
 jobs:
   approved:
