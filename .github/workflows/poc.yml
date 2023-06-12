@@ -2,6 +2,11 @@ name: demo-new
 
 on: 
   workflow_dispatch:
+    inputs:
+      input1:
+        required: false
+        default: false
+        type: boolean
   workflow_call:
     inputs:
       input1:
@@ -18,5 +23,6 @@ jobs:
     env:
       INPUT: ${{ inputs.input1 }}
     steps:
+      - uses: actions/checkout@v3
       - name: Set REPOSITORY_NAME env var
         run: ruby .github/workflows/check.rb
