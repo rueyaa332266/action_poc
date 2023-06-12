@@ -1,2 +1,2 @@
-name="hoge"
-p 'set' if (name =~ /iOS/ || !ENV['INPUT'].empty?)
+p ENV['INPUT']
+p 'set' if (ENV['INPUT'])

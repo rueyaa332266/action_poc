@@ -6,6 +6,7 @@ on:
     inputs:
       input1:
         required: false
+        default: false
         type: boolean
 
 jobs:
@@ -18,18 +19,4 @@ jobs:
       INPUT: ${{ inputs.input1 }}
     steps:
       - name: Set REPOSITORY_NAME env var
-        run: echo "REPOSITORY_NAME=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
-      - name: Set testrail to output
-        id: set-out
-        run: echo "ABC=123" >> "$GITHUB_OUTPUT"
-  demo2:
-    name: demo 2
-    needs: demo
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo ${{ needs.demo.outputs.ABC }}
-      - run: echo ${{ needs.demo.outputs.TEST }}
-      - run: echo ${{ needs.demo.outputs.TEST || '??' }}
-      - if: needs.demo.outputs.TEST
-        run: echo skip
-      - run: echo ${{ github.ref_name }}
+        run: ruby .github/workflows/check.rb
