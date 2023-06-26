@@ -26,9 +26,6 @@ jobs:
       - uses: actions/checkout@v3
       - name: Set REPOSITORY_NAME env var
         run: ruby .github/workflows/check.rb
-      - run: mkdir -p tmp/folder
-      - run: echo hello > tmp/folder/world.txt
-      - uses: actions/upload-artifact@v3
-        with:
-          name: my-artifact
-          path: tmp/folder/world.txt
+        env:
+          TEST: 123
+      - run: echo $TEST
