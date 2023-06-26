@@ -27,5 +27,5 @@ jobs:
       - name: Set REPOSITORY_NAME env var
         run: ruby .github/workflows/check.rb
         env:
-          TEST: 123
+          INPUT: 123
       - run: echo $TEST
