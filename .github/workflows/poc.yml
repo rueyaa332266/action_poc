@@ -21,7 +21,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Set REPOSITORY_NAME env var
-        run: ruby .github/workflows/check.rb
-        env:
-          INPUT: 123
+        run: node .github/workflows/check.js
       - run: echo ${{ env.INPUT }}
