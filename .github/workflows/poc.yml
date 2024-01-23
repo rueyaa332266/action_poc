@@ -24,4 +24,4 @@ jobs:
         run: ruby .github/workflows/check.rb
         env:
           INPUT: 123
-      - run: echo {{ env.INPUT }}
+      - run: echo ${{ env.INPUT }}
