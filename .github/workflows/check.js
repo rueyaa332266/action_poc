@@ -1,1 +1,1 @@
-console.log(process.env.INPUT)
+console.log(process.env.INPUT === "");
