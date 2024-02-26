@@ -3,14 +3,11 @@ name: demo-com
 runs:
     using: 'composite'
     steps:
-    - uses: actions/checkout@v3
-      if: github.repository != 'rueyaa332266/action_poc'
-      with:
-        repository: 'rueyaa332266/action_poc'
-        ref: 'master'
-    - name: check files
-      run: ls .github/workflows
-      shell: bash
-    - name: check env
-      run: echo $TEST
-      shell: bash
+      - name: Generate list using Markdown
+        run: echo "line 1" >> $GITHUB_STEP_SUMMARY
+        shell: bash
+      - name: Generate list using Markdown
+        run: |
+          echo "line 2 : 123" >> $GITHUB_STEP_SUMMARY
+          echo "line 3" >> $GITHUB_STEP_SUMMARY
+        shell: bash

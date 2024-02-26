@@ -7,9 +7,4 @@ jobs:
   demo:
     runs-on: ubuntu-latest
     steps:
-      - name: Generate list using Markdown
-        run: echo "line 1" >> $GITHUB_STEP_SUMMARY
-      - name: Generate list using Markdown
-        run: |
-          echo "line 2 : 123" >> $GITHUB_STEP_SUMMARY
-          echo "line 3" >> $GITHUB_STEP_SUMMARY
+      - uses: ./.github/actions/com
