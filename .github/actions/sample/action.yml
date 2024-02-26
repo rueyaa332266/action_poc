@@ -1,0 +1,9 @@
+name: sample
+
+runs:
+  using: 'composite'
+  steps:
+    - run: echo foo >> "$GITHUB_STEP_SUMMARY"
+      shell: bash
+    - run: echo bar >> "$GITHUB_STEP_SUMMARY"
+      shell: bash
