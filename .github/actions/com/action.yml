@@ -1,4 +1,4 @@
-name: demo-com
+name: com
 
 runs:
     using: 'composite'
