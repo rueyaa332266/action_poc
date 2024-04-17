@@ -1,25 +1,22 @@
-name: demo-new
+name: poc-1
 
 on: 
   workflow_dispatch:
-    inputs:
-      input1:
-        type: string
-  workflow_call:
-    inputs:
-      input1:
-        type: string
+
+env:
+  SUMMARY_REPORT: ""
 
 jobs:
   demo:
     runs-on: ubuntu-latest
-    outputs:
-      ABC: ${{ steps.set-out.outputs.ABC }}
-      TEST: ${{ steps.set-out.outputs.TEST }}
-    env:
-      INPUT: ${{ inputs.input1 }}
     steps:
-      - uses: actions/checkout@v3
-      - name: Set REPOSITORY_NAME env var
-        run: node .github/workflows/check.js
-      - run: echo ${{ env.INPUT }}
+      - run: |
+          echo "SUMMARY_REPORT<<EOF" >> $GITHUB_ENV
+          echo "123" >> $GITHUB_ENV
+          echo "456" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+      - run: echo ${{ env.SUMMARY_REPORT }}
+  demo2:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ env.SUMMARY_REPORT }}
