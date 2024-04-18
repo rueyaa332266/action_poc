@@ -9,18 +9,16 @@ env:
 jobs:
   demo:
     runs-on: ubuntu-latest
-    outputs:
-      summary: ${{ steps.setup.outputs.summary }}
     steps:
       - name: setup
-        run: |
-          echo "SUMMARY_REPORT<<EOF" >> $GITHUB_ENV
-          echo "123\n456" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
-      - id: setup
-        run: echo "summary=${{ env.SUMMARY_REPORT }}" >> "$GITHUB_OUTPUT"
+        run: echo '1'
   demo2:
-    needs: [demo]
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ needs.demo.outputs.summary }}
+      - name: setup
+        run:  echo '2'
+  demo3:
+    needs: [demo, demo2]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ needs.demo.result }}
