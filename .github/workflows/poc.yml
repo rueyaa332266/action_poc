@@ -16,9 +16,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: setup
-        run:  echo '2'
+        run:  exit 2
   demo3:
     needs: [demo, demo2]
     runs-on: ubuntu-latest
+    if: always()
     steps:
       - run: echo ${{ needs.demo.result }}
+      - run: echo ${{ needs.demo2.result }}
