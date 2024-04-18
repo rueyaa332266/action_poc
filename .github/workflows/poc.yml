@@ -20,7 +20,7 @@ jobs:
   demo3:
     needs: [demo, demo2]
     runs-on: ubuntu-latest
-    if: ${{ needs.demo2.result == 'failure' }}
+    if: ${{ always() && needs.demo2.result == 'failure' }}
     steps:
       - run: echo ${{ needs.demo.result }}
       - run: echo ${{ needs.demo2.result }}
