@@ -24,3 +24,10 @@ jobs:
     steps:
       - run: echo ${{ needs.demo.result }}
       - run: echo ${{ needs.demo2.result }}
+  demo4:
+    needs: [demo, demo2]
+    runs-on: ubuntu-latest
+    if: ${{ always() && needs.demo.result == 'success' }}
+    steps:
+      - run: echo ${{ needs.demo.result }}
+      - run: echo ${{ needs.demo2.result }}
