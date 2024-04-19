@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  SUMMARY_REPORT: ""
+  SUMMARY_REPORT: "123"
 
 jobs:
   demo:
@@ -12,6 +12,7 @@ jobs:
     steps:
       - name: setup
         run: echo '1'
+      - run: echo "123 ${{ env.SUMMARY_REPORT }}" >> "$GITHUB_STEP_SUMMARY"
   demo2:
     runs-on: ubuntu-latest
     steps:
